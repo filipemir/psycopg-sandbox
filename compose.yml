@@ -12,7 +12,7 @@ services:
         condition: service_healthy
     command: >
       /bin/bash -c "
-      psql $$DATABASE_URL < /src/migration.sql
+      psql $$DATABASE_URL < /src/migration.sql && python /src/issue.py
       "
   db:
     image: postgres:14.4
