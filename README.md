@@ -1,6 +1,6 @@
 # Reproducing Psycopg Transaction Mystery
 
-This is a small isolated reproduction of an issue that's puzzled me with Psycopg's
+[This](./src/issue.py) is a small isolated reproduction of an issue that's puzzled me with Psycopg's
 handling of transactions and its connection contexts
 
 To run:
@@ -43,9 +43,9 @@ Record fetched using connection <psycopg.AsyncConnection [IDLE] (host=db databas
 (1, 'foo')
 ```
 
-The puzzling behavior to me is the fact that, in the first set of commands, the first
-fetch after the insert returns `None`. I'd expect the connection context in which the
-preceding select statements are executed to commit that transaction, instead of
+The puzzling behavior to me is the, in the first set of commands, the first
+fetch after the insert returning `None`. I'd expect the connection context in which the
+preceding `SELECT` statements are executed to commit that transaction, instead of
 requiring an explicit commit. The second set of commands demonstrates that setting
 `autocommit` to `True` does resolve the issue.
 
